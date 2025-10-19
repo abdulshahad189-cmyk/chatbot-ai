@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CSI WESLEY INSTITUTE OF TECHNOLOGY AND SCIENCES - AI Chatbot for college information, admissions, courses, and results">
+  <meta name="keywords" content="Wesley Engineering College, CSI WITS, AI Chatbot, College Information, Admissions, Results">
+  <meta name="author" content="CSI WESLEY INSTITUTE OF TECHNOLOGY AND SCIENCES">
+  <title>CSI WESLEY AI Chatbot - Your College Assistant</title>
+  <link rel="icon" type="image/png" href="LOGO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- College Background with Logo and Photos -->
+  <div id="college-background" class="college-background">
+    <div class="college-logo-section">
+      <div class="college-logo">
+        <img src="LOGO.png" alt="CSI WESLEY Logo" class="logo-image" />
+      </div>
+      <div class="college-name">
+        <h1>CSI WESLEY INSTITUTE OF TECHNOLOGY AND SCIENCES</h1>
+        <p class="college-tagline">Approved by AICTE | Affiliated to JNTUH</p>
+        <p class="college-motto">"THE UTMOST FOR THE HIGHEST"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Search Bar Style Chatbot -->
+  <div id="search-container" class="search-container">
+    <div class="search-wrapper">
+      <div class="search-box">
+        <div class="search-icon">🔍</div>
+        <input type="text" id="user-input" placeholder="Ask Wesley AI anything about the college..." aria-label="Search Wesley AI" />
+        <button id="send-btn" class="search-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Chat Results Area -->
+    <div id="chat-results" class="chat-results" style="display: none;">
+      <div class="results-header">
+        <span class="results-title">Wesley AI Results</span>
+        <button id="clear-results" class="clear-btn">✕</button>
+      </div>
+      <div class="chat-body" id="chat-body" role="log" aria-live="polite" aria-label="Chat messages"></div>
+    </div>
+  </div>
+
+  <!-- Results Modal -->
+  <div id="results-modal" class="results-modal" role="dialog" aria-labelledby="results-title" aria-hidden="true">
+    <div class="results-content">
+      <div class="results-header">
+        <h3 id="results-title">📊 Wesley College Results</h3>
+        <span id="close-results" role="button" tabindex="0" aria-label="Close results">&times;</span>
+      </div>
+      <div class="results-body">
+        <div class="results-tabs">
+          <button class="tab-btn active" data-tab="semester">Semester Results</button>
+          <button class="tab-btn" data-tab="backlogs">Backlog Status</button>
+          <button class="tab-btn" data-tab="overall">Overall Performance</button>
+          <button class="tab-btn" data-tab="jntuh">JNTUH Results</button>
+        </div>
+        <div class="results-content-area">
+          <div id="semester-results" class="tab-content active">
+            <div class="result-form">
+              <h4>View Your Semester Results</h4>
+              <div class="form-group">
+                <label for="student-id">Hall Ticket No:</label>
+                <input type="text" id="student-id" placeholder="Enter your Hall Ticket Number" />
+              </div>
+              <div class="form-group">
+                <label for="semester">Semester:</label>
+                <select id="semester">
+                  <option value="">Select Semester</option>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6">Semester 6</option>
+                  <option value="7">Semester 7</option>
+                  <option value="8">Semester 8</option>
+                </select>
+              </div>
+              <button id="view-semester-results" class="result-btn">View Results</button>
+            </div>
+            <div id="semester-display" class="result-display"></div>
+          </div>
+          
+          <div id="backlog-results" class="tab-content">
+            <div class="result-form">
+              <h4>Check Backlog Status</h4>
+              <div class="form-group">
+                <label for="backlog-student-id">Hall Ticket No:</label>
+                <input type="text" id="backlog-student-id" placeholder="Enter your Hall Ticket Number" />
+              </div>
+              <button id="view-backlog-results" class="result-btn">Check Backlogs</button>
+            </div>
+            <div id="backlog-display" class="result-display"></div>
+          </div>
+          
+          <div id="overall-results" class="tab-content">
+            <div class="result-form">
+              <h4>Overall Performance</h4>
+              <div class="form-group">
+                <label for="overall-student-id">Hall Ticket No:</label>
+                <input type="text" id="overall-student-id" placeholder="Enter your Hall Ticket Number" />
+              </div>
+              <button id="view-overall-results" class="result-btn">View Overall Performance</button>
+            </div>
+            <div id="overall-display" class="result-display"></div>
+          </div>
+          
+          <div id="jntuh-results" class="tab-content">
+            <div class="result-form">
+              <h4>🎓 JNTUH Results Portal</h4>
+              <p><strong>Access Official JNTUH Results</strong></p>
+              <p>CSI WESLEY is affiliated to Jawaharlal Nehru Technological University Hyderabad (JNTUH). Use the official JNTUH results portal to view your university-level results.</p>
+              <div class="form-group">
+                <label for="jntuh-student-id">Hall Ticket No:</label>
+                <input type="text" id="jntuh-student-id" placeholder="Enter your Hall Ticket Number" />
+              </div>
+              <button id="view-jntuh-results" class="result-btn">Access JNTUH Results</button>
+            </div>
+            <div id="jntuh-display" class="result-display"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Modal -->
+  <div id="photo-modal" class="photo-modal" role="dialog" aria-labelledby="photo-title" aria-hidden="true">
+    <div class="photo-modal-content">
+      <div class="photo-modal-header">
+        <h3 id="photo-title">College Facility</h3>
+        <span id="close-photo-modal" role="button" tabindex="0" aria-label="Close photo modal">&times;</span>
+      </div>
+      <div class="photo-modal-body">
+        <div class="photo-display">
+          <div class="photo-placeholder-large">
+            <span id="photo-icon">🏫</span>
+            <h4 id="photo-name">Campus View</h4>
+          </div>
+        </div>
+        <div class="photo-description">
+          <p id="photo-desc">Click on any facility to learn more about our campus infrastructure and modern amenities.</p>
+    </div>
+        <div class="photo-actions">
+          <button class="photo-action-btn" onclick="askAboutFacility()">Ask About This Facility</button>
+          <button class="photo-action-btn secondary" onclick="closePhotoModal()">Close</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
